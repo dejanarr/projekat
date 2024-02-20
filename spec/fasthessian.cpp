@@ -131,8 +131,8 @@ void FastHessian::getInterestPoints()
 
   // border for non-maximum suppression
   int *borders = new int[_maxScales];
-cout << _maxOctaves << endl;
-cout << _maxScales << endl;
+//cout << _maxOctaves << endl;
+//cout << _maxScales << endl;
   for (int o=0; o < _maxOctaves; o++){
     // distance to border
     int border1;
@@ -179,10 +179,10 @@ cout << _maxScales << endl;
       const int delt = _sampling*octave;
       
       
-      cout << "detrows: ";
+      /*cout << "detrows: ";
       cout << detrows << endl;
       cout << "detcols ";
-      cout << detcols << endl;
+      cout << detcols << endl;*/
       
       
       
@@ -191,8 +191,8 @@ cout << _maxScales << endl;
       _vas[7] = border2 + maskSize; _vas[8] = border2 - maskSize;
       for ( k=border1, _vas[1] = border2; k < detrows; _vas[1]+=delt, k++){
         _vas[5] = border2 + maskSize; _vas[6] = border2 - maskSize;
-        cout << "border 1: ";
-      cout << border1 << endl;
+        /*cout << "border 1: ";
+      cout << border1 << endl;*/
         for ( l=border1, _vas[0] = border2; l < detcols; _vas[0]+=delt, l++){
           _scaleLevel[s]->setPix(l, k, norm*_Iimage->getHessian(_vas));
           _vas[5]+=delt; _vas[6]+=delt;

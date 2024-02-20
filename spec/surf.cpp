@@ -29,14 +29,12 @@ Surf::Surf(){
   _iimage = NULL;
   _Pixels.clear();
   _doubleImage = false;
-  _extended = false;
   _IndexSize = 4;
   _MagFactor = 3;
   _OriSize = 4;
   // calculate length of the descriptor vector
   _VecLength = _IndexSize * _IndexSize * _OriSize;
   // rotation invariance
-  _upright = false;
   // allocate _index
   _index.resize(_IndexSize, std::vector<std::vector<num_f>>(
        _IndexSize, std::vector<num_f>(_OriSize, 0.0f)));
@@ -47,8 +45,7 @@ Surf::Surf(){
 }
 
 // Constructor with parameters
-Surf::Surf(Image *im, bool dbl, bool usurf,
-           bool ext, int insi){
+Surf::Surf(Image *im, bool dbl, int insi){
   // set image
   _iimage = im;
   //_Pixels = _iimage->getPixels();
@@ -58,11 +55,9 @@ Surf::Surf(Image *im, bool dbl, bool usurf,
 
   _IndexSize = insi;
   _MagFactor = 12/insi;
-  _extended = ext;
-  _OriSize = 4 + _extended*4;
+  _OriSize = 4;
   // calculate length of the descriptor vector
   _VecLength = _IndexSize * _IndexSize * _OriSize;
-  _upright = usurf;
   _width = _iimage->getWidth();
   _height = _iimage->getHeight();
  
@@ -246,7 +241,7 @@ void Surf::createVector(double scale, double y, double x) {
   int i, j, iradius, iy, ix;
   double spacing, radius, rpos, cpos, rx, cx;
   int step = MAX((int)(scale/2 + 0.5),1);
-  //std::cout << "step: " << step << endl;
+  //std::cout << "step1: " << step << endl;
   //iy = static_cast<int>(y);
   //ix = static_cast<int>(x);
   iy = (int) (y + 0.5);
@@ -297,6 +292,8 @@ void Surf::createVector(double scale, double y, double x) {
           cx > -1.0 && cx < (double) _IndexSize)
         AddSample(iy + i*step, ix + j*step, rpos, cpos,
                   rx, cx, (int)(scale));
+                  
+                  //cout << "step2: " << step << endl;
     }
 }
 
@@ -334,7 +331,7 @@ void Surf::AddSample(num_i r, num_i c, num_f rpos,
   if (r < 1+step  ||  r >= _height - 1-step  ||
       c < 1+step  ||  c >= _width - 1-step)
      return;
-
+ //cout << "step3: " << step << endl;
   weight = _lookup2[num_i(rpos * rpos + cpos * cpos)];
   //std::cout << "weight: " << weight << endl;
   num_f dxx, dyy;
@@ -347,6 +344,11 @@ void Surf::AddSample(num_i r, num_i c, num_f rpos,
   //std::cout << "dy: " << dy << ", dx: " << dx << endl << endl;
   
   PlaceInIndex(dx, (dx<0?0:1), dy, (dy<0?2:3), rx, cx);
+  
+  
+//cout << "r: " << r << ", c: " <<  c << ", step: " << step << endl; //celi brojevi
+//cout << "rpos: " << rpos << ", cpos: " << cpos << ", rx: " << rx << ", cx: " << cx << ", cose: " << _cose << ", sine " << _sine << endl; //sa zarezom
+//cout << "height: " << _height << ", width: " << _width << ", index size: " << _IndexSize << endl; //fiksni brojevi
 
 }
 

@@ -19,8 +19,7 @@ class Surf {
     Surf();
 
     //! Constructor with parameters
-    Surf(Image *im, bool dbl=false, bool usurf=false,
-         bool ext=false, int insi=4);
+    Surf(Image *im, bool dbl=false, int insi=4);
 
     //! Destructor
     ~Surf();
@@ -37,9 +36,9 @@ class Surf {
     //! Compute the robust features
     void makeDescriptor();
     
-    void ispisiIndex() const; 
+    //void ispisiIndex() const; 
     
-    void ispisiPixels() const;
+    //void ispisiPixels() const;
 
   protected:
     //! Create the vector
@@ -68,8 +67,6 @@ class Surf {
     //num_f ***_index;
     std::vector<std::vector<std::vector<num_f>>> _index;
     bool _doubleImage;
-    bool _upright;
-    bool _extended;
     num_i _VecLength;
     num_i _IndexSize;
     num_i _MagFactor;
