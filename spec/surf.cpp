@@ -289,10 +289,15 @@ void Surf::createVector(double scale, double y, double x) {
 
       // Test whether this sample falls within boundary of _index patch
       if (rx > -1.0 && rx < (double) _IndexSize  &&
-          cx > -1.0 && cx < (double) _IndexSize)
-        AddSample(iy + i*step, ix + j*step, rpos, cpos,
+          cx > -1.0 && cx < (double) _IndexSize) {
+          
+          num_i r = iy + i*step;
+          rValues.push_back(r);
+          num_i c = ix + j*step; 
+        AddSample(r, c, rpos, cpos,
                   rx, cx, (int)(scale));
-                  
+                
+        }          
                   //cout << "step2: " << step << endl;
     }
 }
