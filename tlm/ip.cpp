@@ -55,6 +55,13 @@ void Ip::b_transport0(pl_t& pl, sc_time& offset)
     offset += sc_time(10, SC_NS);
 }
 
+void Ip::proc()
+{
+
+}
+
+
+//Nek stoji za sada ovako
 void Ip::AddSample(num_i r, num_i c, num_f rpos,
                      num_f cpos, num_f rx, num_f cx, num_i step) {
   num_f weight;
