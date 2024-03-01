@@ -16,13 +16,13 @@ CC = g++
 # --------------------- Code modules ----------------------------
 
 # Source files
-SRCS = main.cpp image.cpp fasthessian.cpp imload.cpp
+SRCS = main.cpp image.cpp fasthessian.cpp surf.cpp imload.cpp
 # Object files
-OBJ = main.o image.o fasthessian.o imload.o
+OBJ = main.o image.o fasthessian.o surf.o imload.o
 # Object files for shared library
 SOBJ = image.o fasthessian.o surf.o
 # Definitions
-DEFS = image.h fasthessian.h ipoint.h imload.h
+DEFS = image.h fasthessian.h ipoint.h surf.h imload.h
 
 # ------------------------ Rules --------------------------------
 #$(SRCS):
