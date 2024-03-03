@@ -36,7 +36,7 @@ class Surf {
     //! Compute the robust features
     void makeDescriptor();
     
-    std::vector<double> getRValues() const {return rValues; }
+    std::vector<double> getRVALUES() const {return rValues; }
     
     //void ispisiIndex() const; 
     
