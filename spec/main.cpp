@@ -85,8 +85,11 @@ int sc_main (int argc, char **argv)
     des.assignOrientation();
     // make the SURF descriptor
     des.makeDescriptor();
+   /*         std::vector<double> rValues = des.getRValues();
+    for (double r : rValues) {
+        std::cout << "Vrednost r: " << r << std::endl;
+    }*/
   }
-
   // stop measuring the time, we're all done
   gettimeofday(&tim2, &tz);
 
@@ -144,4 +147,3 @@ void saveIpoints(string sFileName, const vector< Ipoint >& ipts)
   // Write message to terminal.
     cout << count << " interest points found" << endl;
 }
-

@@ -299,7 +299,10 @@ void Surf::createVector(double scale, double y, double x) {
                 
         }          
                   //cout << "step2: " << step << endl;
+                  
     }
+    
+    
 }
 
 /*void Surf::ispisiIndex() const {
